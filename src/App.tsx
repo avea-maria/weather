@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { type AppDispatch } from './store';
 import { fetchWeatherData, isReadySelector } from './store/weatherSlice';
 import { DropContainer } from './components/DropContainer';
 import { Spinner } from './components/Spinner';
+import './index.css';
 
 const FETCH_WEATHER_INTERVAL_IN_MS = 10 * 60 * 1000;
 
@@ -27,13 +27,7 @@ export const App = () => {
 
   return (
     <div className="grid place-content-center">
-      {isReady ? (
-        <DropContainer />
-      ) : (
-        <>
-          <Spinner />
-        </>
-      )}
+      {isReady ? <DropContainer /> : <Spinner />}
     </div>
   );
 };
