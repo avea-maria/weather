@@ -1,9 +1,17 @@
 stages:
+  - test
   - deploy
 
 cache:
   paths:
     - node_modules/
+
+lint:
+  stage: test
+  image: node:22-alpine
+  script:
+    - npm install
+    - npm run lint
 
 pages:
   stage: deploy
