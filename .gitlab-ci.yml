@@ -1,0 +1,19 @@
+stages:
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+pages:
+  stage: deploy
+  image: node:22-alpine
+  script:
+    - npm install
+    - npm run build
+    - rm -rf public/
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  when: manual
