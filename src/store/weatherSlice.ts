@@ -35,6 +35,7 @@ interface IGetWeatherData {
   surface_pressure: number;
   cloud_cover: number;
 }
+
 export const fetchWeatherData = createAsyncThunk(
   'weather/fetchWeatherData',
   async (_, { rejectWithValue }) => {
@@ -80,9 +81,9 @@ export const fetchWeatherData = createAsyncThunk(
         };
       });
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(String(error));
     }
-  }
+  },
 );
 
 const weatherSlice = createSlice({
@@ -95,7 +96,7 @@ const weatherSlice = createSlice({
       (state, action: PayloadAction<TGetWeatherData[]>) => {
         state.isReady = true;
         state.data = action.payload;
-      }
+      },
     );
   },
 });
@@ -136,7 +137,7 @@ export const weatherDataByIndexCreateSelector = () =>
         surface_pressure: weatherData.surface_pressure,
         cloud_cover: weatherData.cloud_cover,
       };
-    }
+    },
   );
 
 export const weatherDataSelector2 = (index: number) => (state: IStore) => {

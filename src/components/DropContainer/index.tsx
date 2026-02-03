@@ -8,7 +8,7 @@ interface IItem {
   index: number;
 }
 
-export const DropContainer = () => {
+export const DropContainer: React.FC = () => {
   const [items, setItems] = useState<IItem[]>([
     { id: 1, order: 0, index: 0 },
     { id: 2, order: 1, index: 1 },
